@@ -1,0 +1,6 @@
+pandas
+numpy
+joblib
+scikit-learn
+sentence-transformers
+openai  # opcional, só se for usar LLM

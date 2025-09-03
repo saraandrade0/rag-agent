@@ -1,0 +1,13 @@
+Frequently Asked Questions (FAQ)
+
+Q: How does this AI agent work?
+A: It indexes documents and retrieves the most relevant passages to answer user questions.
+
+Q: Do I need internet access to run this system?
+A: No. This demo runs locally and uses only open-source libraries.
+
+Q: Can I add new documents?
+A: Yes. Simply place text files into the docs/ folder and run embed.py again.
+
+Q: Does the model understand English?
+A: Yes, the vectorization pipeline can handle multiple languages, including English and Portuguese.
