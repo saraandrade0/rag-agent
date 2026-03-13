@@ -73,12 +73,19 @@ rag-agent/
 │   └── guide1.md
 
 ├── src/                  # Source code
+
 │   ├── generatedocs.py   # Generate demo documents
+
 │   ├── embed_pro.py      # Build embeddings
+
 │   ├── query_pro.py      # Semantic search CLI
+
 │   └── agent_llm.py      # Agent with tool use + optional LLM
+
 ├── requirements.txt
+
 ├── README.md
+
 └── LICENSE
 
 ## 🛠️ Features
