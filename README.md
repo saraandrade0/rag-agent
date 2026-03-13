@@ -65,9 +65,13 @@ With a real key, the agent uses `gpt-4o-mini` to compose answers from retrieved 
 
 ## 📂 Project Structure
 rag-agent/
+
 ├── docs/                 # Knowledge base
+
 │   ├── faq.txt
+
 │   └── guide1.md
+
 ├── src/                  # Source code
 │   ├── generatedocs.py   # Generate demo documents
 │   ├── embed_pro.py      # Build embeddings
