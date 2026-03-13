@@ -44,12 +44,19 @@ python src/agent_llm.py
 
 **Example interaction:**
 Question: What is the price?
+
 [route] pricing
+
 [Tool] Pricing: Basic $19/mo, Pro $49/mo, Enterprise $199/mo.
+
 [Answer] Based on context and tool output...
+
 Question: How do I install it?
+
 [route] setup
+
 [Tool] Setup: 1) Install deps 2) Run embed_pro.py 3) Start agent.
+
 [Answer] Based on context and tool output...
 
 ## 🤖 Optional: LLM Integration (OpenAI)
