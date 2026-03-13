@@ -1,119 +1,98 @@
-🤖 RAG Agent  — No-FAISS + Agent + LLM
+# 🤖 RAG Agent — Semantic Search + Agent + LLM
 
-This repository demonstrates a modern RAG pipeline with:
+Portfolio project demonstrating a modern RAG pipeline with:
 
-Semantic embeddings (Sentence Transformers)
+- **Semantic embeddings** (Sentence Transformers)
+- **Vector search** using scikit-learn (cosine similarity)
+- **Agent design** with simple tool use / function calling
+- **LLM integration** (optional) with OpenAI
 
-Vector search using scikit-learn (cosine similarity, no FAISS required)
+Runs fully offline by default. If you want LLM-generated answers, plug an OpenAI API key.
 
-Agent design with simple tool use / function calling
+## 🚀 Quick Start
 
-LLM integration (optional) with OpenAI
-
-Runs fully offline by default. If you want LLM-generated answers, you can plug an OpenAI API key.
-
-🚀 Quick Start (Default: No-FAISS)
-
-Works on macOS/Linux with Python 3.12. No Docker or GPU required.
-
+Works on macOS/Linux with Python 3.10+. No Docker or GPU required.
+```bash
 # 1) Create & activate venv
-python3.12 -m venv .venv312
-source .venv312/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 
 # 2) Install requirements
-pip install -r requirements_nofaiss.txt
+pip install -r requirements.txt
 
 # 3) Generate demo docs
 python src/generatedocs.py
 
 # 4) Build embeddings
-python src/embed_nofaiss.py
+python src/embed_pro.py
 
 # 5) Run semantic queries
-python src/query_nofaiss.py
+python src/query_pro.py
+```
 
-
-Example:
-
+**Example:**
 Question: Do I need internet to run it?
-> faq.txt   (sim=0.842)
-> guide1.md (sim=0.411)
 
-🧠 Agent Mode
+faq.txt   (sim=0.842)
+guide1.md (sim=0.411)
 
-Run the Agent:
 
-python src/agent_nofaiss_llm.py
+## 🧠 Agent Mode
+```bash
+python src/agent_llm.py
+```
 
-Example interaction
+**Example interaction:**
 Question: What is the price?
 [route] pricing
 [Tool] Pricing: Basic $19/mo, Pro $49/mo, Enterprise $199/mo.
-[Answer] Based on context and tool output, answer to: What is the price?
-
+[Answer] Based on context and tool output...
 Question: How do I install it?
 [route] setup
-[Tool] Setup: 1) Install deps 2) Run embed_nofaiss.py 3) Start agent.
-[Answer] Based on context and tool output, answer to: How do I install it?
+[Tool] Setup: 1) Install deps 2) Run embed_pro.py 3) Start agent.
+[Answer] Based on context and tool output...
 
-🤖 Optional: LLM Integration (OpenAI)
+## 🤖 Optional: LLM Integration (OpenAI)
 
 Enable natural language answers with an LLM:
-
+```bash
 pip install openai
-export OPENAI_API_KEY="sk-YOUR_KEY_HERE"   # macOS/Linux
-# setx OPENAI_API_KEY sk-YOUR_KEY_HERE     # Windows (PowerShell)
+export OPENAI_API_KEY="your-key-here"
+python src/agent_llm.py
+```
 
-python src/agent_nofaiss_llm.py
+With a real key, the agent uses `gpt-4o-mini` to compose answers from retrieved context and tool outputs.
 
+## 📂 Project Structure
+rag-agent/
+├── docs/                 # Knowledge base
+│   ├── faq.txt
+│   └── guide1.md
+├── src/                  # Source code
+│   ├── generatedocs.py   # Generate demo documents
+│   ├── embed_pro.py      # Build embeddings
+│   ├── query_pro.py      # Semantic search CLI
+│   └── agent_llm.py      # Agent with tool use + optional LLM
+├── requirements.txt
+├── README.md
+└── LICENSE
 
-With a real key, the agent uses gpt-4o-mini to compose answers from:
+## 🛠️ Features
 
-retrieved context (docs)
+- **RAG** (Retrieval-Augmented Generation) with embeddings
+- **Vector search** via `NearestNeighbors` (cosine similarity)
+- **Agent design** → routes queries to tools or docs
+- **Tool use / Function calling** (pricing, setup)
+- **LLM orchestration** (optional with OpenAI)
 
-tool outputs (pricing, setup, etc.)
+## 🧪 Example Questions
 
-📂 Project Structure
-rag-agent-demo/
-├─ docs/                 # Knowledge base
-│  ├─ faq.txt
-│  └─ guide1.md
-├─ src/                  # Source code
-│  ├─ generatedocs.py
-│  ├─ embed_nofaiss.py
-│  ├─ query_nofaiss.py
-│  └─ agent_nofaiss_llm.py
-├─ requirements_nofaiss.txt
-├─ README.md
-└─ LICENSE
+- "How does this AI agent work?"
+- "Do I need internet to run it?"
+- "Can I add new documents?"
+- "What is the price?" → routed to pricing tool
+- "How do I install it?" → routed to setup tool
 
-🛠️ Features
+## 📜 License
 
-RAG (Retrieval-Augmented Generation) with embeddings
-
-Vector search via NearestNeighbors (cosine)
-
-Agent design → routes queries to tools or docs
-
-Tool use / Function calling (pricing, setup)
-
-LLM orchestration (optional with OpenAI)
-
-Matches common job requirements: “RAG, tool use, function calling, and agent design.”
-
-🧪 Example Questions
-
-“How does this AI agent work?”
-
-“Do I need internet to run it?”
-
-“Can I add new documents?”
-
-“What is the price?” → routed to pricing tool
-
-“How do I install it?” → routed to setup tool
-
-📜 License
-
-Distributed under the MIT License. See LICENSE
- for details.git add .
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.

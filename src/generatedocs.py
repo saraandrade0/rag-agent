@@ -21,7 +21,7 @@ This project demonstrates how to build a simple Retrieval-Augmented Generation (
 
 ## Main steps
 1. Index documents with embeddings.
-2. Query using vector similarity (FAISS).
+2. Query using vector similarity (cosine distance via scikit-learn).
 3. Return the most relevant passages to the user question.
 4. Use a simple routing logic (agent) to decide response type.
 

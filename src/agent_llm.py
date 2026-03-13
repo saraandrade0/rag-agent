@@ -26,8 +26,7 @@ def retrieve(question, k=3):
 
 TOOLS = {
     "pricing": lambda _: "Pricing: Basic $19/mo, Pro $49/mo, Enterprise $199/mo.",
-    "setup":   lambda _: "Setup: 1) Install deps 2) Run embed_nofaiss.py 3) Start agent."
-}
+    "setup":   lambda _: "Setup: 1) Install deps 2) Run embed_pro.py 3) Start agent.",}
 
 def decide_tool(q):
     q = q.lower()
@@ -41,7 +40,9 @@ def llm_answer(question, ctx, tool_out=""):
     if not OPENAI_AVAILABLE:
         return f"[LLM not installed] Based on context{' and tool output' if tool_out else ''}, answer to: {question}"
 
-    api_key = os.getenv("OPENAI_API_KEY", "sk-FAKE_KEY_123")
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return "[Error] OPENAI_API_KEY not set. Configure it to enable LLM answers."
     client = OpenAI(api_key=api_key)
 
     prompt = f"""
